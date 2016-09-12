@@ -10,6 +10,7 @@ const knex = require('./db/knex');
 
 //require routes
 const index = require('./routes/index');
+const snakes = require('./routes/snakes');
 
 //Start app
 const app = express();
@@ -25,6 +26,8 @@ app.use(bodyparser.urlencoded({
 app.use(cors());
 
 app.use('/', index);
+
+app.use('/snakes', snakes);
 
 
 //Setup Error Handler
