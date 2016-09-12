@@ -9,6 +9,7 @@ exports.up = function(knex, Promise) {
     table.string('sex');
     table.date('year_hatched');
     table.string('group');
+    table.string('url');
   });
 };
 

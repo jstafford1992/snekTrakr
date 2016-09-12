@@ -5,6 +5,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const knex = require('../db/knex');
 
+
 //TODO make this route the home index.
 router.get('/', function(req, res, next){
   // res.JSON('blah', 'AHHHHH');
