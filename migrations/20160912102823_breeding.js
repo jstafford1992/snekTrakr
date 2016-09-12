@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     //Female snake_id (DAME)
     table.integer('snake_id');
     //Male snake_id (SIRE)
+    table.integer('sire');
     table.date('date_paired');
   });
 };
