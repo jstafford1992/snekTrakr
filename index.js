@@ -6,7 +6,10 @@ const bodyparser = require('body-parser');
 const cors = require('cors');
 const expressJWT = require('express-jwt');
 const logger = require('morgan');
+const knex = require('./db/knex');
 
+//require routes
+const index = require('./routes/index');
 
 //Start app
 const app = express();
@@ -14,16 +17,14 @@ const app = express();
 //port setup
 const port = process.env.PORT || 3000;
 
-app.use(logger);
+app.use(logger('dev'));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({
   extended: false
 }));
-app.use(cors);
+app.use(cors());
 
-
-
-
+app.use('/', index);
 
 
 //Setup Error Handler
@@ -41,4 +42,4 @@ app.listen(port, function(){
 });
 
 //export
-module.export = app;
+module.exports = app;
