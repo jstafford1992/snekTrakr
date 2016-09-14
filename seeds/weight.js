@@ -8,7 +8,9 @@ exports.seed = function(knex, Promise) {
         // Inserts seed entries
         knex('weight').insert({id: 1, snake_id: 1, weight: 2300, date_weighed: '09-09-2017'}),
         knex('weight').insert({id: 2, snake_id: 1, weight: 2200, date_weighed: '07-09-2017'}),
-        knex('weight').insert({id: 3, snake_id: 2, weight: 2300, date_weighed: '09-09-2017'})
+        knex('weight').insert({id: 3, snake_id: 2, weight: 2300, date_weighed: '09-09-2017'}),
+        knex('weight').insert({id: 4, snake_id: 3, weight: 2000, date_weighed: '09-09-2017'}),
+        knex('weight').insert({id: 5, snake_id: 4, weight: 1200, date_weighed: '09-09-2017'})
       ]);
     });
 };
