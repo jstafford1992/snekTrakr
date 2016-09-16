@@ -7,6 +7,8 @@ const cors = require('cors');
 const expressJWT = require('express-jwt');
 const logger = require('morgan');
 const knex = require('./db/knex');
+const helmet = require('helmet');
+
 
 //require routes
 const index = require('./routes/index');
@@ -19,6 +21,7 @@ const app = express();
 //port setup
 const port = process.env.PORT || 3000;
 
+app.use(helmet());
 app.use(logger('dev'));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({
