@@ -14,6 +14,7 @@ const helmet = require('helmet');
 const index = require('./routes/index');
 const snakes = require('./routes/snakes');
 const users = require('./routes/users');
+const clutches = require('./routes/clutches');
 
 //Start app
 const app = express();
@@ -32,6 +33,7 @@ app.use(cors());
 app.use('/', index);
 app.use('/snakes', snakes);
 app.use('/user', users);
+app.use('/clutches', clutches);
 
 //Setup Error Handler
 app.use(function(req, res, next){

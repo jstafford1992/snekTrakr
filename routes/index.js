@@ -7,18 +7,54 @@ const knex = require('../db/knex');
 const bcrypt = require('bcrypt');
 const expressJwt = require('express-jwt');
 
+function checkEmail(email){
+  return knex('users').select('*').where({email: email});
+}
 
-//TODO make this route the home index.
-router.get('/', function(req, res, next){
+router.post('/signup', function(req, res, next){
+  var user = {
+    email: req.body.email,
+    password: req.body.password
+  };
 
-  knex('users').select('*').then(function(data){
-    console.log("data: ", data);
-    res.json(data);
+  var info = {
+    email: req.body.email,
+    passwordError: false,
+    error: []
+  };
+
+  checkEmail(user.email).then(function(data){
+    if(info.passwordError){
+      // console.log(info.error.password);
+      res.status(401).json(info.error.password);
+      return;
+    } else if (data.length >= 1) {
+      console.log("Email already in use");
+      res.status(401).json({message: "Email already in use"});
+      return;
+    } else {
+      bcrypt.genSalt(10, function(err, salt){
+        bcrypt.hash(req.body.password, salt, function(err, hash){
+          knex('users').insert({
+            email: req.body.email,
+            password: hash
+          })
+          .returning('id')
+          .then(function(id){
+              var profile = {
+                id: id[0],
+                email: user.email
+              };
+              var token = jwt.sign(profile, process.env.SECRET);
+              res.status(200).json({token: token});
+          })
+          .catch(function(err){
+            res.status(500).json({err: err});
+          });
+        });
+      });
+    }
   });
-});
-
-router.post('/singup', function(req, res, next){
-  // knex('users').where('email', req.body.email)
 });
 
 router.post('/login', function(req, res, next){
@@ -28,15 +64,36 @@ router.post('/login', function(req, res, next){
     password: req.body.password
   };
 
-  
+  checkEmail(user.email).then(function(data){
+    if(data.length === 0){
+      res.status(401).json({message: "User does not exist."});
+      return;
+    } else {
+      user.id = data[0].id;
+      bcrypt.compare(user.password, data[0].password, function(err, result) {
+        console.log(result);
+        if (result === false) {
+          res.status(401).send({message:'Incorrect username or password'});
+          return;
+        } else {
+          var profile = {
+            id: user.id,
+            username: user.username
+          };
+          console.log(profile);
+          var token = jwt.sign(profile, process.env.SECRET);
+          res.status(200).json({ token:token, id:profile.id });
+        }
+      });
+    }
+  });
+
 
 });
 
 
 
-function checkEmail(email){
-  return knex('users').where({email: email});
-}
+
 
 
 module.exports = router;
