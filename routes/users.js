@@ -28,7 +28,8 @@ router.put('/:id', function(req, res, next) {
   //TODO update USER information Mostly PASSWORD info
 
   var account = {
-
+    email: req.body.email,
+    password: req.body.password
   };
 
   knex('users')
