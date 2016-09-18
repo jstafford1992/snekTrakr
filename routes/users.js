@@ -17,7 +17,7 @@ router.get('/:id', function(req, res, next){
   .catch(function(err){
     console.log(err);
     res.status(500).json({
-      err:errr
+      err:err
     });
   });
 
@@ -29,7 +29,7 @@ router.put('/:id', function(req, res, next) {
 
   var account = {
 
-  }
+  };
 
   knex('users')
   .select('*')
