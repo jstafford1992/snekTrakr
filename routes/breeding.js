@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const knex = require('./db/knex');
+const knex = require('../db/knex');
 
 //breeding
 
@@ -10,8 +10,8 @@ const knex = require('./db/knex');
 router.get('/', function(req, res, next){
 
   knex('breeding')
-  .join('users', 'breeding.snake_id', 'users.snake_id')
-  .where('user_id', req.user.id)
+  .join('snakes', 'breeding.snake_id', 'snakes.id')
+  .where('snakes.user_id', req.user.id)
   .select('*')
   .then(function(data){
     console.log(data);

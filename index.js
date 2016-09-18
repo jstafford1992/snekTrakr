@@ -16,6 +16,8 @@ const index = require('./routes/index');
 const snakes = require('./routes/snakes');
 const users = require('./routes/users');
 const clutches = require('./routes/clutches');
+const breeding = require('./routes/breeding');
+const feeding = require('./routes/feeding');
 
 //Start app
 const app = express();
@@ -37,6 +39,8 @@ app.use(expressJWT({secret: process.env.SECRET}));
 app.use('/user', users);
 app.use('/snakes', snakes);
 app.use('/clutches', clutches);
+app.use('/breeding', breeding);
+app.use('/feeding', feeding);
 
 //Setup Error Handler
 // app.use(function(req, res, next){
