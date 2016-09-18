@@ -48,11 +48,11 @@ app.use('/shed', shed);
 app.use('/weight', weight);
 
 //Setup Error Handler
-// app.use(function(req, res, next){
-//   let err = new Error('Route not Found');
-//   err.status = 404;
-//   next(err);
-// });
+app.use(function(req, res, next){
+  let err = new Error('Route not Found');
+  err.status = 404;
+  next(err);
+});
 
 
 
