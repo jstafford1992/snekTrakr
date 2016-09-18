@@ -18,6 +18,9 @@ const users = require('./routes/users');
 const clutches = require('./routes/clutches');
 const breeding = require('./routes/breeding');
 const feeding = require('./routes/feeding');
+const shed = require('./routes/shed');
+const weight = require('./routes/weight');
+
 
 //Start app
 const app = express();
@@ -41,6 +44,8 @@ app.use('/snakes', snakes);
 app.use('/clutches', clutches);
 app.use('/breeding', breeding);
 app.use('/feeding', feeding);
+app.use('/shed', shed);
+app.use('/weight', weight);
 
 //Setup Error Handler
 // app.use(function(req, res, next){

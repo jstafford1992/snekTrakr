@@ -4,15 +4,14 @@ const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
 
-//Get Shed by ID
+//get weight by ID
 router.get('/:id', function(req, res, next){
-
-  knex('shed')
+  knex('weight')
   .select('*')
   .where('snake_id', req.params.id)
   .then(function(data){
     console.log(data);
-    res.json('Successfully Grab Shed Data');
+    res.json("Get Weight Data");
   })
   .catch(function(err){
     console.log(err);
@@ -23,18 +22,17 @@ router.get('/:id', function(req, res, next){
 
 });
 
-//Add Shed info by ID
+//add new weight data
 router.post('/:id', function(req, res, next){
-
-  knex('shed')
+  knex('weight')
   .insert({
     snake_id: req.params.id,
-    date_shed: req.body.date_shed,
-    prelay: req.body.prelay
+    weight: req.body.weight,
+    date_weighed: req.body.date_weighed
   })
   .then(function(data){
     console.log(data);
-    res.json("Added Shed info");
+    res.json("Added new weight");
   })
   .catch(function(err){
     console.log(err);
@@ -45,14 +43,14 @@ router.post('/:id', function(req, res, next){
 
 });
 
+//delete Weight data
 router.delete('/:id', function(req, res, next){
-
-  knex('shed')
+  knex('weight')
   .where('snake_id', req.params.id)
   .del()
   .then(function(data){
     console.log(data);
-    res.json("Deleted Shed Data");
+    res.json("Deleted Weight Data");
   })
   .catch(function(err){
     console.log(err);
@@ -60,9 +58,8 @@ router.delete('/:id', function(req, res, next){
       err:err
     });
   });
-  
-});
 
+});
 
 
 module.exports = router;
