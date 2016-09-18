@@ -10,14 +10,41 @@ const knex = require('../db/knex');
 router.get('/:id', function(req, res, next){
   //TODO get USER information
 
+  knex('users').select('*').where('id', req.user.id).then(function(data){
+    console.log(data);
+    res.json('Get user Information');
+  })
+  .catch(function(err){
+    console.log(err);
+    res.status(500).json({
+      err:errr
+    });
+  });
 
 });
 
 
 router.put('/:id', function(req, res, next) {
-  //TODO update USER information
+  //TODO update USER information Mostly PASSWORD info
 
-  //Should re-route to user page
+  var account = {
+
+  }
+
+  knex('users')
+  .select('*')
+  .where('id', req.user.id)
+  .update(account)
+  .then(function(data){
+    console.log(data);
+    res.json('Updated Account');
+  })
+  .catch(function(err){
+    console.log(err);
+    res.status(500).json({
+      err:err
+    });
+  });
 
 });
 
@@ -26,7 +53,21 @@ router.put('/:id', function(req, res, next) {
 router.delete('/:id', function(req, res, next){
   //TODO delete USER information
 
-  //Should re-route to home and logout
+  knex('users')
+  .where('id', req.user.id)
+  .del()
+  .then(function(data){
+    console.log(data);
+    res.json('Account Deleted');
+    //Force Log Out and refresh page
+  })
+  .catch(function(err){
+    console.log(err);
+    res.status(500).json({
+      err:err
+    });
+  });
+
 });
 
 

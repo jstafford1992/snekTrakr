@@ -5,14 +5,12 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const knex = require('../db/knex');
 
-//will be routed here successful login
-
 router.get('/', function(req, res, next){
   //TODO will get all snakes and list them out for the user to view.
-
-  // res.send('HELLO JIMMY!');
-
-  knex('snakes').select('*').where('user_id', 1)
+  // console.log(req.user);
+  knex('snakes')
+  .where('user_id', req.user.id)
+  .select('*')
   .then(function(data){
     res.send(data);
   })
@@ -22,12 +20,11 @@ router.get('/', function(req, res, next){
 
 });
 
-
-
 router.get('/:id', function(req, res, next){
   //TODO will list individual snake for detailed report
   var gender;
-  knex('snakes').select('sex')
+  knex('snakes')
+  .select('sex')
   .where('id', req.params.id)
   .then(function(data){
        gender = data[0].sex;
@@ -69,22 +66,83 @@ router.get('/:id', function(req, res, next){
 
 });
 
-router.post('/', function(req, res, next){
+router.post('/new', function(req, res, next){
   //TODO create new snakes
+  //SHOULD HAVE OPTION TO INSERT OTHER OPTIONAL RELATED INFO FOR OTHER TABLES
 
-  //Should re-route to the snakes page
+  var snake = {
+    user_id: req.body.user_id,
+    name: req.body.name,
+    notes: req.body.notes,
+    sex: req.body.sex,
+    year_hatched: req.body.year_hatched,
+    group: req.body.group,
+    url: req.body.url,
+    image_url: req.body.image_url
+  };
+
+  knex('snakes')
+  .insert(snake)
+  .then(function(data){
+    console.log(data);
+    return res.json("success");
+  })
+  .catch(function(err){
+    console.log(err);
+    return "failed insert";
+  });
+
+
 });
 
 router.put('/:id', function(req, res, next){
   //TODO update snake details
 
-  //should re-route to the snakes page
+  var snake = {
+    id: req.params.id,
+    user_id: req.body.user_id,
+    name: req.body.name,
+    notes: req.body.notes,
+    sex: req.body.sex,
+    year_hatched: req.body.year_hatched,
+    group: req.body.group,
+    url: req.body.url,
+    image_url: req.body.image_url
+  };
+
+  knex('snakes')
+  .where('id', req.params.id)
+  .update(snake, '*')
+  .then(function(data){
+    console.log(data);
+    res.json('Success');
+  })
+  .catch(function(err){
+    console.log(err);
+    res.status(500).json({
+      err: err
+    });
+  });
+
 });
 
 router.delete('/:id', function(req, res, next){
   //TODO delete snake
 
-  //should re-route to the getAll snake page
+  knex('snakes')
+  .where('id', req.params.id)
+  .del()
+  .then(function(data){
+    console.log(data);
+    res.json("Deleted");
+  })
+  .catch(function(err){
+    console.log(err);
+    res.status(500).json({
+      err: err
+    });
+  });
+
 });
 
 

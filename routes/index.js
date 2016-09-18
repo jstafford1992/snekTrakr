@@ -69,20 +69,21 @@ router.post('/login', function(req, res, next){
       res.status(401).json({message: "User does not exist."});
       return;
     } else {
+      console.log(data[0].id);
       user.id = data[0].id;
       bcrypt.compare(user.password, data[0].password, function(err, result) {
         console.log(result);
         if (result === false) {
-          res.status(401).send({message:'Incorrect username or password'});
+          res.status(401).send({message:'Incorrect email or password'});
           return;
         } else {
           var profile = {
             id: user.id,
-            username: user.username
+            email: user.email
           };
-          console.log(profile);
           var token = jwt.sign(profile, process.env.SECRET);
           res.status(200).json({ token:token, id:profile.id });
+          console.log(token);
         }
       });
     }
