@@ -7,7 +7,7 @@ module.exports = {
     connection: process.env.DATABASE_URL || 'postgres://localhost/snek_trakr'
   },
 
-  staging: {
+  production: {
     client: 'postgresql',
     connection: process.env.DATABASE_URL || 'postgres://localhost/snek_trakr',
     pool: {
