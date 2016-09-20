@@ -75,12 +75,13 @@ router.get('/:id', function(req, res, next){
   knex('snakes').select('*').where('id', req.params.id).then(function(data){
     console.log("Snakes: ", data);
     gender = data[0].sex;
-    snake.data = data;
+    container.snake = data[0];
     if (gender == "male") {
       console.log(gender);
       var breedingMale = knex('breeding')
       .select('*')
       .where('sire', req.params.id)
+      .join('snakes', 'breeding.snake_id', 'snakes.id')
       .then(function(data){
         // console.log("Breeding Male");
         container.pair = data;
@@ -94,6 +95,7 @@ router.get('/:id', function(req, res, next){
       var breedingFemale = knex('breeding')
       .select('*')
       .where('snake_id', req.params.id)
+      .join('snakes', 'snakes.id', 'breeding.sire')
       .then(function(data){
         // console.log("Pair: ", data);
         // res.json(data);
@@ -144,7 +146,16 @@ router.get('/:id', function(req, res, next){
   });
 
 
-
+  // var breedingFemale = knex('breeding')
+  // .select('*')
+  // .join('snakes', 'snakes.id', 'breeding.sire')
+  // .where('snake_id', req.params.id)
+  // .then(function(data){
+  //   // console.log("Pair: ", data);
+  //   // res.json(data);
+  //   // console.log("Breeding Female");
+  //   container.pair = data;
+  // });
 
 
 
