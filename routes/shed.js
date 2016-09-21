@@ -12,7 +12,7 @@ router.get('/:id', function(req, res, next){
   .where('snake_id', req.params.id)
   .then(function(data){
     console.log(data);
-    res.json('Successfully Grab Shed Data');
+    res.json(data);
   })
   .catch(function(err){
     console.log(err);
@@ -34,7 +34,7 @@ router.post('/:id', function(req, res, next){
   })
   .then(function(data){
     console.log(data);
-    res.json("Added Shed info");
+    res.json(data);
   })
   .catch(function(err){
     console.log(err);
@@ -52,7 +52,7 @@ router.delete('/:id', function(req, res, next){
   .del()
   .then(function(data){
     console.log(data);
-    res.json("Deleted Shed Data");
+    res.json(data);
   })
   .catch(function(err){
     console.log(err);
@@ -60,7 +60,7 @@ router.delete('/:id', function(req, res, next){
       err:err
     });
   });
-  
+
 });
 
 

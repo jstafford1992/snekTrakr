@@ -14,7 +14,7 @@ router.get('/', function(req, res, next){
   .where('snakes.user_id', req.user.id)
   .then(function(data){
     console.log(data);
-    res.json('Get All Clutches');
+    res.json(data);
   })
   .catch(function(err){
     console.log(err);
@@ -33,7 +33,7 @@ router.get('/:id', function(req, res, next){
   .select('*')
   .then(function(data){
     console.log(data);
-    res.json('Success');
+    res.json(data);
   })
   .catch(function(err){
     console.log(err);
@@ -54,7 +54,7 @@ router.post('/new', function(req, res, next){
     bad_eggs: req.body.bad_eggs})
   .then(function(data){
     console.log(data);
-    res.json('Added Clutch');
+    res.json(data);
   })
   .catch(function(err){
     console.log(err);
@@ -82,7 +82,7 @@ router.put('/:id', function(req, res, next){
   .update(clutch)
   .then(function(data){
     console.log(data);
-    res.json('Updated Clutch');
+    res.json(data);
   })
   .catch(function(err){
     console.log(err);
@@ -101,7 +101,7 @@ router.delete('/:id', function(req, res, next){
   .del()
   .then(function(data){
     console.log(data);
-    res.json('Deleted Clutch');
+    res.json(data);
   })
   .catch(function(err){
     console.log(err);

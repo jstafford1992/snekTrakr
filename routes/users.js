@@ -12,7 +12,7 @@ router.get('/:id', function(req, res, next){
 
   knex('users').select('*').where('id', req.user.id).then(function(data){
     console.log(data);
-    res.json('Get user Information');
+    res.json(data);
   })
   .catch(function(err){
     console.log(err);
@@ -38,7 +38,7 @@ router.put('/:id', function(req, res, next) {
   .update(account)
   .then(function(data){
     console.log(data);
-    res.json('Updated Account');
+    res.json(data);
   })
   .catch(function(err){
     console.log(err);
@@ -59,7 +59,7 @@ router.delete('/:id', function(req, res, next){
   .del()
   .then(function(data){
     console.log(data);
-    res.json('Account Deleted');
+    res.json('Account Deleted', data);
     //Force Log Out and refresh page
   })
   .catch(function(err){

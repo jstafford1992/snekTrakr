@@ -181,11 +181,13 @@ router.post('/new', function(req, res, next){
   .insert(snake)
   .then(function(data){
     console.log(data);
-    res.json("success");
+    res.json(data);
   })
   .catch(function(err){
     console.log(err);
-     res.json("failed insert");
+     res.status(500).json({
+       err:err
+     });
   });
 
 
@@ -230,7 +232,7 @@ router.delete('/:id', function(req, res, next){
   .del()
   .then(function(data){
     console.log(data);
-    res.json("Deleted");
+    res.json("Deleted", data);
   })
   .catch(function(err){
     console.log(err);

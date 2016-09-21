@@ -11,7 +11,7 @@ router.get('/:id', function(req, res, next){
   .where('snake_id', req.params.id)
   .then(function(data){
     console.log(data);
-    res.json("Get Weight Data");
+    res.json(data);
   })
   .catch(function(err){
     console.log(err);
@@ -32,7 +32,7 @@ router.post('/:id', function(req, res, next){
   })
   .then(function(data){
     console.log(data);
-    res.json("Added new weight");
+    res.json(data);
   })
   .catch(function(err){
     console.log(err);
@@ -50,7 +50,7 @@ router.delete('/:id', function(req, res, next){
   .del()
   .then(function(data){
     console.log(data);
-    res.json("Deleted Weight Data");
+    res.json(data);
   })
   .catch(function(err){
     console.log(err);
