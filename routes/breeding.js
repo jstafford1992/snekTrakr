@@ -47,11 +47,11 @@ router.get('/:id', function(req, res, next){
 });
 
 //add breeding
-router.post('/:id', function(req, res, next){
+router.post('/', function(req, res, next){
   //ADD NEW Breeding
   knex('breeding')
   .insert({
-    snake_id: req.params.id,
+    snake_id: req.body.snake_id,
     sire: req.body.sire,
     date_paired: req.body.date_paired
   })
@@ -73,7 +73,7 @@ router.delete('/:id', function(req, res, next){
   //delete Breeding
 
   knex('breeding')
-  .where('snake_id', req.params.id)
+  .where('id', req.params.id)
   .del()
   .then(function(data){
     console.log(data);

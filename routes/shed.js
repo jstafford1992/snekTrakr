@@ -24,11 +24,11 @@ router.get('/:id', function(req, res, next){
 });
 
 //Add Shed info by ID
-router.post('/:id', function(req, res, next){
+router.post('/', function(req, res, next){
 
   knex('shed')
   .insert({
-    snake_id: req.params.id,
+    snake_id: req.body.snake_id,
     date_shed: req.body.date_shed,
     prelay: req.body.prelay
   })
@@ -48,7 +48,7 @@ router.post('/:id', function(req, res, next){
 router.delete('/:id', function(req, res, next){
 
   knex('shed')
-  .where('snake_id', req.params.id)
+  .where('id', req.params.id)
   .del()
   .then(function(data){
     console.log(data);

@@ -23,10 +23,11 @@ router.get('/:id', function(req, res, next){
 });
 
 //add new weight data
-router.post('/:id', function(req, res, next){
+router.post('/', function(req, res, next){
+  console.log(req.body);
   knex('weight')
   .insert({
-    snake_id: req.params.id,
+    snake_id: req.body.snake_id,
     weight: req.body.weight,
     date_weighed: req.body.date_weighed
   })
@@ -46,7 +47,7 @@ router.post('/:id', function(req, res, next){
 //delete Weight data
 router.delete('/:id', function(req, res, next){
   knex('weight')
-  .where('snake_id', req.params.id)
+  .where('id', req.params.id)
   .del()
   .then(function(data){
     console.log(data);

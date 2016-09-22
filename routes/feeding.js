@@ -49,11 +49,11 @@ router.post('/', function(req, res, next){
 router.delete('/:id', function(req, res, next){
 
   knex('feeding')
-  .where('snake_id', req.params.id)
+  .where('id', req.params.id)
   .del()
   .then(function(data){
     console.log(data);
-    res.json("Deleted Feeding", data);
+    res.json(data);
   })
   .catch(function(err){
     console.log(err);
