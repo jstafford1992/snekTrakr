@@ -10,8 +10,9 @@ const knex = require('../db/knex');
 router.get('/', function(req, res, next){
 
   knex('clutch')
-  .join('snakes', 'clutch.snake_id', 'snakes.id')
-  .where('snakes.user_id', req.user.id)
+  .join('snakes as sn', 'clutch.snake_id', 'sn.id')
+  .select('clutch.id', 'clutch.snake_id', 'clutch.notes', 'clutch.date_layed', 'clutch.number_layed', 'clutch.bad_eggs', 'clutch.number_hatched', 'sn.user_id', 'sn.name', 'sn.sex', 'sn.year_hatched', 'sn.group', 'sn.image_url')
+  .where('sn.user_id', req.user.id)
   .then(function(data){
     console.log(data);
     res.json(data);
