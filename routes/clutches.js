@@ -79,7 +79,7 @@ router.put('/:id', function(req, res, next){
 
   knex('clutch')
   .where('id', req.params.id)
-  .update(clutch)
+  .update(clutch, '*')
   .then(function(data){
     console.log(data);
     res.json(data);

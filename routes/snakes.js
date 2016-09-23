@@ -162,12 +162,12 @@ router.get('/:id', function(req, res, next){
 
 });
 
-router.post('/new', function(req, res, next){
+router.post('/', function(req, res, next){
   //TODO create new snakes
   //SHOULD HAVE OPTION TO INSERT OTHER OPTIONAL RELATED INFO FOR OTHER TABLES
 
   var snake = {
-    user_id: req.body.user_id,
+    user_id: req.user.id,
     name: req.body.name,
     notes: req.body.notes,
     sex: req.body.sex,
@@ -198,7 +198,7 @@ router.put('/:id', function(req, res, next){
 
   var snake = {
     id: req.params.id,
-    user_id: req.body.user_id,
+    user_id: req.user.id,
     name: req.body.name,
     notes: req.body.notes,
     sex: req.body.sex,
