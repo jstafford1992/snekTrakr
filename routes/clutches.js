@@ -46,13 +46,15 @@ router.get('/:id', function(req, res, next){
 });
 //CREATE
 router.post('/new', function(req, res, next){
-
   knex('clutch')
   .insert({
-    snake_id: req.body.dame,
+    snake_id: req.body.snake_id,
     date_layed: req.body.date_layed,
+    notes: req.body.notes,
     number_layed: req.body.number_layed,
-    bad_eggs: req.body.bad_eggs})
+    bad_eggs: req.body.bad_eggs,
+    number_hatched: req.body.number_hatched
+  })
   .then(function(data){
     console.log(data);
     res.json(data);
