@@ -53,7 +53,8 @@ router.post('/new', function(req, res, next){
     notes: req.body.notes,
     number_layed: req.body.number_layed,
     bad_eggs: req.body.bad_eggs,
-    number_hatched: req.body.number_hatched
+    number_hatched: req.body.number_hatched,
+    image_url: req.body.image_url
   })
   .then(function(data){
     console.log(data);
@@ -77,6 +78,7 @@ router.put('/:id', function(req, res, next){
     date_layed: req.body.date_layed,
     number_layed: req.body.number_layed,
     bad_eggs: req.body.bad_eggs,
+    image_url: req.body.image_url,
     number_hatched: req.body.number_hatched
   };
 
