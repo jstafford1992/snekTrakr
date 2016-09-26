@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
     table.string('rat_size');
     table.date('successful');
     table.date('attempted');
+    table.integer('amount')
   });
 };
 

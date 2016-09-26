@@ -30,7 +30,8 @@ router.post('/', function(req, res, next){
     snake_id: req.body.snake_id,
     rat_size: req.body.rat_size,
     successful: req.body.successful,
-    attempted: req.body.attempted
+    attempted: req.body.attempted,
+    amount: req.body.amount
   })
   .then(function(data){
     console.log(data);

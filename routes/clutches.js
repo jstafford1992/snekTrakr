@@ -11,7 +11,7 @@ router.get('/', function(req, res, next){
 
   knex('clutch')
   .join('snakes as sn', 'clutch.snake_id', 'sn.id')
-  .select('clutch.id', 'clutch.snake_id', 'clutch.notes', 'clutch.date_layed', 'clutch.number_layed', 'clutch.bad_eggs', 'clutch.number_hatched', 'sn.user_id', 'sn.name', 'sn.sex', 'sn.year_hatched', 'sn.group', 'sn.image_url')
+  .select('clutch.id', 'clutch.snake_id', 'clutch.notes', 'clutch.date_layed', 'clutch.number_layed', 'clutch.bad_eggs', 'clutch.number_hatched', 'sn.user_id', 'sn.name', 'sn.sex', 'sn.year_hatched', 'sn.group', 'clutch.image_url')
   .where('sn.user_id', req.user.id)
   .then(function(data){
     console.log(data);

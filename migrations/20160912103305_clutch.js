@@ -10,6 +10,7 @@ exports.up = function(knex, Promise) {
     table.integer('number_layed');
     table.integer('bad_eggs');
     table.integer('number_hatched');
+    table.string('image_url');
   });
 };
 
