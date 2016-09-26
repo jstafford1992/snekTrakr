@@ -79,9 +79,9 @@ router.get('/:id', function(req, res, next){
     if (gender == "male") {
       console.log(gender);
       var breedingMale = knex('breeding')
-      .select('*')
       .where('sire', req.params.id)
       .join('snakes', 'breeding.snake_id', 'snakes.id')
+      .select('breeding.id', 'breeding.snake_id', 'breeding.sire', 'breeding.date_paired', 'snakes.id as snake_id', 'snakes.name')
       .then(function(data){
         // console.log("Breeding Male");
         container.pair = data;
@@ -93,9 +93,9 @@ router.get('/:id', function(req, res, next){
       }, 50);
     } else {
       var breedingFemale = knex('breeding')
-      .select('*')
       .where('snake_id', req.params.id)
       .join('snakes', 'snakes.id', 'breeding.sire')
+      .select('breeding.id', 'breeding.snake_id', 'breeding.sire', 'breeding.date_paired', 'snakes.id as snake_id', 'snakes.name')
       .then(function(data){
         // console.log("Pair: ", data);
         // res.json(data);

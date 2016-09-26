@@ -12,7 +12,6 @@ router.get('/', function(req, res, next){
   knex('breeding')
   .join('snakes', 'breeding.snake_id', 'snakes.id')
   .where('snakes.user_id', req.user.id)
-  .select('*')
   .then(function(data){
     console.log(data);
     res.json(data);
@@ -35,6 +34,7 @@ router.get('/:id', function(req, res, next){
   .where('snake_id', req.params.id)
   .then(function(data){
     console.log(data);
+    console.log("Logging Breeding for snake");
     res.json(data);
   })
   .catch(function(err){
