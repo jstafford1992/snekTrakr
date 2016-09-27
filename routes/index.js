@@ -46,7 +46,7 @@ router.post('/signup', function(req, res, next){
                 email: user.email
               };
               var token = jwt.sign(profile, process.env.SECRET);
-              res.status(200).json({token: token});
+              res.status(200).json({ token:token, id:profile.id });
           })
           .catch(function(err){
             res.status(500).json({err: err});
@@ -81,9 +81,10 @@ router.post('/login', function(req, res, next){
             id: user.id,
             email: user.email
           };
+          console.log(profile);
           var token = jwt.sign(profile, process.env.SECRET);
           res.status(200).json({ token:token, id:profile.id });
-          console.log(token);
+          // console.log(token);
         }
       });
     }
