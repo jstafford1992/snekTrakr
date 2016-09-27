@@ -45,6 +45,8 @@ router.put('/:id', function(req, res, next) {
     password: req.body.password
   };
 
+  console.log(account);
+
   // knex('users')
   // .select('*')
   // .where('id', req.user.id)
