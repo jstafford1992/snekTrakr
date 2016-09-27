@@ -232,7 +232,7 @@ router.delete('/:id', function(req, res, next){
   .del()
   .then(function(data){
     console.log(data);
-    res.json("Deleted", data);
+    res.json(data);
   })
   .catch(function(err){
     console.log(err);
