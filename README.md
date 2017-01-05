@@ -31,9 +31,16 @@
   - /:id GET 
   
 #/feeding
-
+ - / POST
+ - /:id GET
+ - /:id DELETE
 
 #/shed
-
+ - / POST
+ - /:id GET
+ - /:id DELETE
 
 #/weight
+ - / POST
+ - /:id GET
+ - /:id DELETE
