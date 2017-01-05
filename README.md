@@ -22,7 +22,11 @@
   - /:id DELETE
 
 #/clutches
-  - / GET
+  - / GET 
+  - /new POST
+  - /:id GET
+  - /:id PUT
+  - /:id DELETE
 
 #/breeding
   - / GET
