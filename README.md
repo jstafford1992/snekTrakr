@@ -15,7 +15,6 @@ This is the repo for the server-side code and I have posted below all of the rou
   - /signup POST
 
 #/users
-  - /users GET
   - /users/:id PUT
   - /users/:id DELETE
 
