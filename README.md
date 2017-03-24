@@ -10,45 +10,45 @@ snekTrakr is a hybrid-mobile application built for streamlining the access and u
  
 This is the repo for the server-side code and I have posted below all of the routes currently available. 
   
-#/
+# /
   - /login POST
   - /signup POST
 
-#/users
+# /users
   - /users/:id PUT
   - /users/:id DELETE
 
-#/snakes  
+# /snakes  
   - /snakes GET
   - /snakes POST
   - /snakes/:id GET
   - /snakes/:id PUT
   - /snakes/:id DELETE
 
-#/clutches
+# /clutches
   - /clutches GET 
   - /clutches/new POST
   - /clutches/:id GET
   - /clutches/:id PUT
   - /clutches/:id DELETE
 
-#/breeding
+# /breeding
   - /breeding GET
   - /breeding POST
   - /breeding/:id DELETE
   - /breeding/:id GET 
   
-#/feeding
+# /feeding
  - /feeding POST
  - /feeding/:id GET
  - /feeding/:id DELETE
 
-#/shed
+# /shed
  - /shed POST
  - /shed/:id GET
  - /shed/:id DELETE
 
-#/weight
+# /weight
  - /weight POST
  - /weight/:id GET
  - /weight/:id DELETE
